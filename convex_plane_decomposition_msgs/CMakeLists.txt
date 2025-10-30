@@ -12,6 +12,11 @@ find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(grid_map_msgs REQUIRED)
 
+set(_python_build_dir "${CMAKE_CURRENT_BINARY_DIR}/ament_cmake_python/${PROJECT_NAME}")
+if(EXISTS "${_python_build_dir}" AND NOT IS_SYMLINK "${_python_build_dir}")
+        file(REMOVE_RECURSE "${_python_build_dir}")
+endif()
+
 rosidl_generate_interfaces(${PROJECT_NAME}
         "msg/BoundingBox2d.msg"
         "msg/PlanarRegion.msg"
