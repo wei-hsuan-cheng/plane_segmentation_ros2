@@ -5,6 +5,11 @@ find_package(ament_cmake REQUIRED)
 
 include(ExternalProject)
 
+# Give extracted files the extraction time (CMake >= 3.24; silences the CMP0135 warning on Jazzy)
+if(POLICY CMP0135)
+  cmake_policy(SET CMP0135 NEW)
+endif()
+
 set(VERSION 5.3)
 
 file(MAKE_DIRECTORY ${CMAKE_INSTALL_PREFIX}/include)
